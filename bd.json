@@ -1,0 +1,10 @@
+[
+		{
+			nombre: "Escuela 12",
+			descripcion: "Enfoca a la escuela"
+		},
+		{
+			nombre: "Universidad",
+			descripcion: "Enfoca la parada de colectivos"
+		}
+]

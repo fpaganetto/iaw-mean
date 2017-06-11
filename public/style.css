@@ -1,0 +1,11 @@
+body{
+	background-color: #455A64;
+	color: white;
+}
+
+nav{
+	background-color: #263238;
+	padding-left: 15%;
+	padding-right: 15%;
+	@extend .blue, .lighten-4;
+}

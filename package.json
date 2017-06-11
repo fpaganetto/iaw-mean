@@ -1,0 +1,23 @@
+{
+  "name": "proyecto-iaw",
+  "version": "0.0.1",
+  "description": "Proyecto Ingenieria de Aplicaciones Web 2017",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nu11Pointer/iaw-mean.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Express",
+    "Angular",
+    "Node"
+  ],
+  "author": "Agustin Pacheco y Federico Paganetto",
+  "license": "",
+  "dependencies": {
+    "express": "*",
+    "mongojs": "*",
+    "body-parser": "*"
+  }
+}

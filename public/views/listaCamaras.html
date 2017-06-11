@@ -1,0 +1,24 @@
+<div ng-controller="AddCamarasController">
+	<input type="text" ng-model="camara.nombre">
+	<input type="text" ng-model="camara.descripcion">
+	<button class="waves-effect waves-light btn" ng-click="agregarCamara()">Agregar camara</button>
+</div>
+
+<div ng-controller="ListCamarasController">
+	<h1>Listado de las camaras</h1>
+	<table class="highlight">
+			<thead>
+	      <tr>
+	          <th>Nombre</th>
+	          <th>Descripcion</th>
+	      </tr>
+	    </thead>
+
+		<tbody>
+		<tr ng-repeat="camara in camaras">
+			<td> {{camara.nombre}} </td>
+			<td> <strong>{{camara.descripcion}}</strong> </td>
+		</tr>
+		</tbody>
+	</table>
+</div>
