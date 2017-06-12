@@ -1,10 +1,10 @@
-<div ng-controller="AddCamarasController">
+<div ng-controller="CamaraController">
 	<input type="text" ng-model="camara.nombre">
 	<input type="text" ng-model="camara.descripcion">
 	<button class="waves-effect waves-light btn" ng-click="agregarCamara()">Agregar camara</button>
 </div>
 
-<div ng-controller="ListCamarasController">
+<div ng-controller="CamaraController">
 	<h1>Listado de las camaras</h1>
 	<table class="highlight">
 			<thead>
@@ -17,7 +17,11 @@
 		<tbody>
 		<tr ng-repeat="camara in camaras">
 			<td> {{camara.nombre}} </td>
-			<td> <strong>{{camara.descripcion}}</strong> </td>
+			<td> {{camara.descripcion}}</td>
+			<td> 
+				<a class="waves-effect waves-light btn btn-eliminar" ng-click="eliminarCamara()">
+				<i class="material-icons left">delete</i>Eliminar</a>
+			</td>
 		</tr>
 		</tbody>
 	</table>

@@ -30,3 +30,9 @@ app.post("/camaras", function(req, res) {
     res.json(doc);
   });
 });
+
+app.delete("/camaras", function(req, res) {
+  db.camaras.remove(req.body, function(err, doc){
+    res.json(doc);
+  });
+});

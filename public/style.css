@@ -7,5 +7,12 @@ nav{
 	background-color: #263238;
 	padding-left: 15%;
 	padding-right: 15%;
-	@extend .blue, .lighten-4;
+}
+
+.btn-eliminar{
+	background-color: #f44336;
+}
+
+.btn-eliminar:hover{
+	background-color: #ee6e73;
 }
