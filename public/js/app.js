@@ -12,6 +12,7 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		$http.get("/camaras").then(function(response){
 			//console.log(response.data);
 			$scope.camaras = response.data;
+			actualizarAutocompletar(response.data);
 		})
 	};
 
@@ -30,3 +31,20 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		});
 	}
 }]);
+
+app.directive("directivaEditar", function() {
+  var linkFunction = function(scope, element, attributes) {
+  	//Element es un arreglo, el [0] es el elemento DOM?
+  	e = element;
+  	console.log(element);
+    var paragraph = element.children()[0];
+    $(paragraph).on("click", function() {
+      $(this).css({ "background-color": "red" });
+    });
+  };
+
+  return {
+    restrict: "E",
+    link: linkFunction
+  };
+});

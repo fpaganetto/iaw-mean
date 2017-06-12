@@ -16,3 +16,11 @@ nav{
 .btn-eliminar:hover{
 	background-color: #ee6e73;
 }
+
+.btn-editar{
+	background-color: #8BC34A;
+}
+
+.btn-editar:hover{
+	background-color: #9CCC65;
+}
