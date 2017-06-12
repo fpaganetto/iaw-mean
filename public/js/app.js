@@ -2,8 +2,9 @@ var app = angular.module('ctosApp',['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
-		.when('/',{ templateUrl: 'views/listaCamaras.html'})
-		.when('/agregar',{ templateUrl: 'views/formularioCamara.html'});
+		.when('/',{ templateUrl: '/views/listaCamaras.html'})
+		.when('/agregar',{ templateUrl: '/views/formularioCamara.html'})
+		.when('/mapa',{ templateUrl: '/views/mapa.html'});
 }]);
 
 app.controller("CamaraController",["$scope", '$http',function($scope, $http){

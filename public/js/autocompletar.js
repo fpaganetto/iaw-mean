@@ -4,7 +4,6 @@ function actualizarAutocompletar(elementos){
 	for (i=0; i<elementos.length; i++){
 		datos[elementos[i].nombre] = null
 	}
-	console.log(datos);
 	$('input.autocomplete').autocomplete({
 		data: datos,
 		/*{

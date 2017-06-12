@@ -24,3 +24,8 @@ nav{
 .btn-editar:hover{
 	background-color: #9CCC65;
 }
+
+.dropdown-content{
+	background-color: #ECEFF1;
+	color: white;
+}

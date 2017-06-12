@@ -1,5 +1,15 @@
-<div ng-controller="CamarasController">
-	<input type="text" ng-model="camara.nombre">
-	<input type="text" ng-model="camara.descripcion">
+<div class="container">
+<div class="row" ng-controller="CamaraController">
+	<div class="input-field col s6">
+		<i class="material-icons prefix">videocam</i>
+		<input value="" id="nombre" type="text" class="validate" ng-model="camara.nombre">
+		<label class="active" for="nombre">Nombre</label>
+	</div>
+	<div class="input-field col s6">
+		<i class="material-icons prefix">label</i>
+		<input value="" id="descripcion" type="text" class="validate" ng-model="camara.descripcion">
+		<label class="active" for="descripcion">Descripcion</label>
+	</div>
 	<button class="waves-effect waves-light btn" ng-click="agregarCamara()">Agregar camara</button>
+</div>
 </div>
