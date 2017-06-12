@@ -31,8 +31,10 @@ app.post("/camaras", function(req, res) {
   });
 });
 
-app.delete("/camaras", function(req, res) {
-  db.camaras.remove(req.body, function(err, doc){
+app.delete("/camaras/:id", function(req, res) {
+  var id = req.params.id;
+  console.log("eliminando "+id);
+  db.camaras.remove({_id: mongojs.ObjectId(id)}, function(err, doc){
     res.json(doc);
   });
 });

@@ -15,10 +15,7 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		})
 	};
 
-	$http.get("/camaras").then(function(response){
-		//console.log(response.data);
-		$scope.camaras = response.data;
-	});
+	refresh(); //Para cargar por primera vez
 
 	$scope.agregarCamara = function(){
 		//console.log($scope.camara);
@@ -26,7 +23,10 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 			refresh();
 		});
 	};
-	$scope.eliminarCamara = function(){
-		$http.delete('/camaras', $scope.camara);
+	$scope.eliminarCamara = function(id){
+		//console.log("eliminando "+id);
+		$http.delete('/camaras/'+id, $scope.camara).then(function(responde){
+			refresh();
+		});
 	}
 }]);
