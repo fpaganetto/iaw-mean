@@ -85,9 +85,40 @@ function initMap() {
           ]
 	});
 
-	var marker = new google.maps.Marker({
-	    position: {lat: -38.7183177, lng: -62.2663478},
-	    map: map,
-	    title: 'Hello World!'
-  	});
+  var image = {
+    //url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+    url: './img/camara2.png',
+    // This marker is 20 pixels wide by 32 pixels high.
+    size: new google.maps.Size(256, 256),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 0),
+    //Reescalado
+    scaledSize: new google.maps.Size(20, 20), // scaled size
+  };
+
+  //XXX
+  app.run(function ($http) {
+    console.log("running");
+    $http.get("/camaras").then(function(response){
+      camaras = response.data;
+      console.log(camaras);
+    })
+  });
+ 
+  var marker = new google.maps.Marker({
+    position: {lat: -38.7183177, lng: -62.2663478},
+    map: map,
+    title: 'Hello World!',
+    icon: image
+  });
+
+
+  var marker = new google.maps.Marker({
+    position: {lat: -38.7183100, lng: -62.266},
+    map: map,
+    title: 'Adios World!',
+    icon: image
+  });
 }

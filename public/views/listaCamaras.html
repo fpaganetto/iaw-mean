@@ -41,16 +41,18 @@
 			<td> {{camara.nombre}} </td>
 			<td> {{camara.descripcion}}</td>
 
-			<td class = "right"> 	
+			<directiva-editar>
+			<td class = "right">
 				<a class="waves-effect waves-light btn btn-editar">
 				<i class="material-icons left">mode_edit</i>Editar</a>
 				<a class="waves-effect waves-light btn btn-eliminar" ng-click="eliminarCamara(camara._id)">
 				<i class="material-icons left">delete</i>Eliminar</a>
 			</td>
+			</directiva-editar>
 		</tr>
 		</tbody>
 	</table>
 
-<script src="js/autoCompletar.js"></script>
+<script src="js/autocompletar.js"></script>
 </div>
 </div>

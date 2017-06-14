@@ -4,7 +4,8 @@ app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
 		.when('/',{ templateUrl: '/views/listaCamaras.html'})
 		.when('/agregar',{ templateUrl: '/views/formularioCamara.html'})
-		.when('/mapa',{ templateUrl: '/views/mapa.html'});
+		.when('/mapa',{ templateUrl: '/views/mapa.html'})
+		.when('/admin',{ templateUrl: '/views/admin.html'});
 }]);
 
 app.controller("CamaraController",["$scope", '$http',function($scope, $http){
@@ -33,11 +34,20 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 	}
 }]);
 
+app.controller("LoginController", function($scope, $http, $window){
+	$scope.login = function(){
+		console.log("login")
+		$http.post('/login', {user: $scope.username, password: $scope.password}).then(function(response){
+			$window.location.href = '/secreto';
+		});
+	}
+});
+
+//XXX para la edicion
 app.directive("directivaEditar", function() {
   var linkFunction = function(scope, element, attributes) {
   	//Element es un arreglo, el [0] es el elemento DOM?
   	e = element;
-  	console.log(element);
     var paragraph = element.children()[0];
     $(paragraph).on("click", function() {
       $(this).css({ "background-color": "red" });
