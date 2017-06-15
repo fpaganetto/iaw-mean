@@ -1,22 +1,20 @@
 <div>
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 600px;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 600px;
+      html, body, #map {
         margin: 0;
         padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+      #map {
+        position: relative;
       }
     </style>
 
-    
+
     <script src="js/map.js"></script>
 
-    <div id="map" map-lazy-load="https://maps.google.com/maps/api/js" ng-controller"MapController">
+    <div id="map" map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyCLgrNdY7Vt9XqjWohlDfbYI8KAnk9WVTo" ng-controller="MapController">
       <ng-map center="-38.7183177, -62.2663478" zoom="14">
         <marker ng-repeat="c in camaras" position="{{c.latitud + "," + c.longitud}}"
         data="{{data[$index]}}"

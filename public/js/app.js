@@ -1,4 +1,4 @@
-angular.module('mapa',[]); //definición de módulo, código en map.js
+angular.module('mapa',["ngMap"]); //definición de módulo, código en map.js
 
 var app = angular.module('ctosApp',['ngRoute','ngMap']);
 
