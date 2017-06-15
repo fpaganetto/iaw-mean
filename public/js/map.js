@@ -4,7 +4,8 @@ angular.module('mapa',["ngMap"])
 
 	refresh = function(){
 		$http.get("/camaras").then(function(response){
-			//console.log(response.data);
 			$scope.camaras = response.data;
 		})}
 	}]);
+
+//archivo inútil???
