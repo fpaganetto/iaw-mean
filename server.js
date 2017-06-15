@@ -1,7 +1,6 @@
 var express = require('express');
 var mongojs = require('mongojs');
 var bodyParser = require('body-parser');
-var ngmap = require('ngMap');
 
 //App
 var app = express();
