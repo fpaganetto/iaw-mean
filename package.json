@@ -16,8 +16,9 @@
   "author": "Agustin Pacheco y Federico Paganetto",
   "license": "",
   "dependencies": {
+    "body-parser": "*",
     "express": "*",
     "mongojs": "*",
-    "body-parser": "*"
+    "ngmap": "^1.18.4"
   }
 }

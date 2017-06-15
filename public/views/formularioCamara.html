@@ -8,7 +8,17 @@
 	<div class="input-field col s6">
 		<i class="material-icons prefix">label</i>
 		<input value="" id="descripcion" type="text" class="validate" ng-model="camara.descripcion">
-		<label class="active" for="descripcion">Descripcion</label>
+		<label class="active" for="descripcion">Descripción</label>
+	</div>
+	<div class="input-field col s6">
+		<i class="material-icons prefix">location_on</i>
+		<input value="" id="latitud" type="number" step="0.0000001" class="validate" ng-model="camara.latitud">
+		<label class="active" for="descripcion">Latitud</label>
+	</div>
+	<div class="input-field col s6">
+		<i class="material-icons prefix">location_on</i>
+		<input value="" id="longitud" type="number" step="0.0000001" class="validate" ng-model="camara.longitud">
+		<label class="active" for="descripcion">Longitud</label>
 	</div>
 	<button class="waves-effect waves-light btn" ng-click="agregarCamara()">Agregar camara</button>
 </div>

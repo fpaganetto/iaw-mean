@@ -1,4 +1,6 @@
-var app = angular.module('ctosApp',['ngRoute']);
+angular.module('mapa',[]); //definición de módulo, código en map.js
+
+var app = angular.module('ctosApp',['ngRoute','ngMap', 'mapa']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
@@ -8,7 +10,7 @@ app.config(['$routeProvider', function($routeProvider){
 }]);
 
 app.controller("CamaraController",["$scope", '$http',function($scope, $http){
-	
+
 	refresh = function(){
 		$http.get("/camaras").then(function(response){
 			//console.log(response.data);
@@ -48,4 +50,9 @@ app.directive("directivaEditar", function() {
     restrict: "E",
     link: linkFunction
   };
+});
+
+
+app.controller('MapController', function() {
+	//acá deberíamos definir una colección cuyos elementos son las cámaras obtenidas desde la base de datos
 });

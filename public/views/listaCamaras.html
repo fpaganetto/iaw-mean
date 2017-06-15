@@ -10,6 +10,16 @@
 		<input value="" id="descripcion" type="text" class="validate" ng-model="camara.descripcion">
 		<label class="active" for="descripcion">Descripcion</label>
 	</div>
+	<div class="input-field col s6">
+		<i class="material-icons prefix">location_on</i>
+		<input value="" id="latitud" type="number" step="0.0000001" class="validate" ng-model="camara.latitud">
+		<label class="active" for="descripcion">Latitud</label>
+	</div>
+	<div class="input-field col s6">
+		<i class="material-icons prefix">location_on</i>
+		<input value="" id="longitud" type="number" step="0.0000001" class="validate" ng-model="camara.longitud">
+		<label class="active" for="descripcion">Longitud</label>
+	</div>
 	<button class="waves-effect waves-light btn" ng-click="agregarCamara()">Agregar camara</button>
 </div>
 
@@ -33,6 +43,8 @@
 	      <tr>
 	          <th>Nombre</th>
 	          <th>Descripcion</th>
+						<th>Latitud</th>
+						<th>Longitud</th>
 	      </tr>
 	    </thead>
 
@@ -40,8 +52,10 @@
 		<tr ng-repeat="camara in camaras | filter:filtro">
 			<td> {{camara.nombre}} </td>
 			<td> {{camara.descripcion}}</td>
+			<td> {{camara.latitud}} </td>
+			<td> {{camara.longitud}} </td>
 
-			<td class = "right"> 	
+			<td class = "right">
 				<a class="waves-effect waves-light btn btn-editar">
 				<i class="material-icons left">mode_edit</i>Editar</a>
 				<a class="waves-effect waves-light btn btn-eliminar" ng-click="eliminarCamara(camara._id)">
