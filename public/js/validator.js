@@ -1,4 +1,4 @@
-$("#formCamara").validate({
+/*$("#formCamara").validate({
     rules: {
         nombre: {
             required: true,
@@ -26,7 +26,7 @@ $("#formCamara").validate({
         },
         curl: "Enter your website",
     },
-    errorElement : 'input',
+    errorElement : 'div',
     errorPlacement: function(error, element) {
       var placement = $(element).data('error');
       if (placement) {
@@ -35,4 +35,4 @@ $("#formCamara").validate({
         error.insertAfter(element);
       }
     }
- });
+ });*/
