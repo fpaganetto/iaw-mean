@@ -6,7 +6,8 @@ app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
 		.when('/',{ templateUrl: '/views/abmCamara.html'})
 		.when('/agregar',{ templateUrl: '/views/formularioCamara.html'})
-		.when('/mapa',{ templateUrl: '/views/mapa.html'});
+		.when('/mapa',{ templateUrl: '/views/mapa.html'})
+		.when('/prueba',{ templateUrl: '/views/prueba.html'});
 }]);
 
 app.controller("CamaraController",["$scope", '$http',function($scope, $http){
@@ -32,6 +33,23 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		$http.delete('/camaras/'+id, $scope.camara).then(function(responde){
 			refresh();
 		});
+		Materialize.toast('Camara eliminada', 4000, "rounded");
+	}	
+
+	$scope.formEditar = true;
+	toggleEditor = function () {
+    	$scope.formEditar = !$scope.formEditar;
+    	Materialize.toast($scope.formEditar+"", 4000, "rounded");
+	};
+
+	$scope.toggleEditor = toggleEditor;
+
+	$scope.editarCamamara = function(id){
+		/*$http.post('/camaras/'+id, $scope.camara).then(function(responde){
+			refresh();
+		});*/
+		Materialize.toast('Camara editada', 4000, "rounded");
+		toggleEditor();
 	}
 }]);
 

@@ -52,20 +52,32 @@
 	      </tr>
 	    </thead>
 
-		<tbody>
-		<tr ng-repeat="camara in camaras | filter:filtro">
-			<td> {{camara.nombre}} </td>
-			<td> {{camara.descripcion}}</td>
-			<td> {{camara.latitud}} </td>
-			<td> {{camara.longitud}} </td>
+		<tbody ng-repeat="camara in camaras | filter:filtro">
+			<tr ng-show="formEditar">
+				<td> {{camara.nombre}} </td>
+				<td> {{camara.descripcion}}</td>
+				<td> {{camara.latitud}} </td>
+				<td> {{camara.longitud}} </td>
 
-			<td class = "right">
-				<a class="waves-effect waves-light btn btn-editar">
-				<i class="material-icons left">mode_edit</i>Editar</a>
-				<a class="waves-effect waves-light btn btn-eliminar" ng-click="eliminarCamara(camara._id)">
-				<i class="material-icons left">delete</i>Eliminar</a>
-			</td>
-		</tr>
+				<td class = "right">
+					<a class="waves-effect waves-light btn btn-editar" ng-click="toggleEditor()">
+					<i class="material-icons left">mode_edit</i>Editar</a>
+					<a class="waves-effect waves-light btn btn-eliminar" ng-click="eliminarCamara(camara._id)">
+					<i class="material-icons left">delete</i>Eliminar</a>
+				</td>
+			</tr>
+
+			<tr ng-hide="formEditar">
+				<td> <input value="{{camara.nombre}}" type="text" class="validate" ng-model="camara.nombre"></td>
+				<td> <input value="{{camara.descripcion}}" type="text" class="validate" ng-model="camara.descripcion"></td>
+				<td> <input value="{{camara.latitud}}" type="number" class="validate" ng-model="camara.latitud"></td>
+				<td> <input value="{{camara.longitud}}" type="number" class="validate" ng-model="camara.longitud"></td>
+
+				<td>	
+				<a class="waves-effect waves-light btn btn-guardar" ng-click="editarCamamara(camara._id)">
+				<i class="material-icons left">done</i>Guardar</a>
+				</td>
+			</tr>
 		</tbody>
 	</table>
 

@@ -25,6 +25,14 @@ nav{
 	background-color: #9CCC65;
 }
 
+.btn-guardar{
+	background-color: #CDDC39;
+}
+
+.btn-guardar:hover{
+	background-color: #DCE775;
+}
+
 .dropdown-content{
 	background-color: #ECEFF1;
 	color: white;
