@@ -23,7 +23,10 @@
       <div class="col s8"> <!-- Columna 2-->
           <div id="map" map-lazy-load="https://maps.google.com/maps/api/js?key=AIzaSyCLgrNdY7Vt9XqjWohlDfbYI8KAnk9WVTo" ng-controller="MapController">
             <ng-map center="-38.7183177, -62.2663478" zoom="14" styles="{{estilo}}">
-            <marker ng-repeat="c in camaras" position="{{c.latitud}},{{c.longitud}}" title="{{c.nombre}}"></marker>
+              <marker 
+                ng-repeat="c in camaras" position="{{c.latitud}},{{c.longitud}}" title="{{c.nombre}}">
+                <!-- img src='img/camara.jpg'/-->
+              </marker>
             </ng-map>
           </div> 
       </div> <!-- Columna 2 END-->
