@@ -29,3 +29,7 @@ nav{
 	background-color: #ECEFF1;
 	color: white;
 }
+
+table.highlight tbody tr:hover {
+    background-color: #37474F;
+}
