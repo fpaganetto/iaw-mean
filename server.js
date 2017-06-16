@@ -31,6 +31,13 @@ app.post("/camaras", function(req, res) {
   });
 });
 
+app.post("/camaras/editar/:id", function(req, res) {
+  //console.log(req.body);
+  db.camaras.insert(req.body, function(err, doc){
+    res.json(doc);
+  });
+});
+
 app.delete("/camaras/:id", function(req, res) {
   var id = req.params.id;
   console.log("eliminando "+id);
