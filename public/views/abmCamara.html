@@ -68,10 +68,10 @@
 			</tr>
 
 			<tr ng-show="formEditar == camara._id">
-				<td> <input type="text" class="validate" ng-model="camara.nombre"></td>
-				<td> <input type="text" class="validate" ng-model="camara.descripcion"></td>
-				<td> <input type="number" class="validate" ng-model="camara.latitud"></td>
-				<td> <input type="number" class="validate" ng-model="camara.longitud"></td>
+				<td class="input-editor"> <input type="text" class="validate input-editor" ng-model="camara.nombre"></td>
+				<td class="input-editor"> <input type="text" class="validate input-editor" ng-model="camara.descripcion"></td>
+				<td class="input-editor"> <input type="number" class="validate input-editor" ng-model="camara.latitud"></td>
+				<td class="input-editor"> <input type="number" class="validate input-editor" ng-model="camara.longitud"></td>
 
 				<td class = "right">	
 				<a class="waves-effect waves-light btn btn-guardar" ng-click="editarCamamara(camara)">
