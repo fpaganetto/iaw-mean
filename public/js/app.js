@@ -47,6 +47,7 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		$http.post('/camaras', $scope.camara).then(function(response){
 			refresh();
 		});
+		$scope.camara = null;
 	};
 
 	//DELETE
