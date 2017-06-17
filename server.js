@@ -43,14 +43,18 @@ app.post("/camaras", function(req, res) {
 //PUT
 app.put("/camaras/:id", function(req, res) {
   var id = req.params.id;
+  camara = req.body;
+  delete camara._id;
+  
   db.camaras.findAndModify(
     {query: {_id: mongojs.ObjectId(id)}, //Seleccina el contacto a editar
-      update: {$set :{
+      update: {$set : camara
+      /*{
         nombre: req.body.nombre, 
         descripcion: req.body.descripcion, 
         latitud: req.body.latitud, 
         longitud: req.body.longitud
-          } 
+        }*/
       },
       new: true}, //Fin de la query
     function(err, doc){
