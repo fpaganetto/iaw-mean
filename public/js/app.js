@@ -13,21 +13,16 @@ app.config(['$routeProvider', function($routeProvider){
 app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 
 	//Editor
-	var formEditar = [];
-	cargarEditor = function(){		
-		camaras = $scope.camaras;
-		for (c in camaras)
-			formEditar[camaras[c]._id]=false;
-	}
-	$scope.formEditar = formEditar;
-
+	$scope.formEditar = 0;
 	$scope.toggleEditor = function (id) {
-    	$scope.formEditar[id] = !$scope.formEditar[id];
+		if ($scope.formEditar == id) //Si ya hay uno, lo desactiva
+			$scope.formEditar = 0;
+		else $scope.formEditar = id;
 	};
 
 	$scope.editarCamamara = function(id){
-		console.log($scope.camaraRegistrada);
-		$http.post('/camaras/editar/'+id, $scope.camaraRegistrada).then(function(responde){
+		console.log($scope.camara);
+		$http.post('/camaras/editar/'+id, $scope.camara).then(function(responde){
 			refresh();
 		});
 		Materialize.toast('Camara editada', 4000, "rounded");
@@ -40,7 +35,6 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 			//console.log(response.data);
 			$scope.camaras = response.data;
 			actualizarAutocompletar(response.data);
-			cargarEditor();
 		})
 	};
 
