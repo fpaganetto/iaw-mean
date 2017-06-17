@@ -20,16 +20,17 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		else $scope.formEditar = id;
 	};
 
-	$scope.editarCamamara = function(id){
-		console.log($scope.camara);
-		$http.post('/camaras/editar/'+id, $scope.camara).then(function(responde){
+	//PUT
+	$scope.editarCamamara = function(camara){
+		//console.log(camara);
+		$http.put('/camaras/'+camara._id, camara).then(function(responde){
 			refresh();
 		});
 		Materialize.toast('Camara editada', 4000, "rounded");
-		$scope.toggleEditor(id);
+		$scope.toggleEditor(camara._id);
 	}
 
-	//Refresh list
+	//GET
 	refresh = function(){
 		$http.get("/camaras").then(function(response){
 			//console.log(response.data);
@@ -40,12 +41,15 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 
 	refresh(); //Para cargar por primera vez
 
+	//POST
 	$scope.agregarCamara = function(){
 		//console.log($scope.camara);
 		$http.post('/camaras', $scope.camara).then(function(response){
 			refresh();
 		});
 	};
+
+	//DELETE
 	$scope.eliminarCamara = function(id){
 		//console.log("eliminando "+id);
 		$http.delete('/camaras/'+id, $scope.camara).then(function(responde){
