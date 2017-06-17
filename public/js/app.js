@@ -5,12 +5,12 @@ var app = angular.module('ctosApp',['ngRoute','ngMap']);
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
 		.when('/',{ templateUrl: '/views/abmCamara.html'})
-		.when('/agregar',{ templateUrl: '/views/formularioCamara.html'})
 		.when('/mapa',{ templateUrl: '/views/mapa.html'})
+		.when('/admin',{ templateUrl: '/views/admin.html'})
 		.when('/prueba',{ templateUrl: '/views/prueba.html'});
 }]);
 
-app.controller("CamaraController",["$scope", '$http',function($scope, $http){
+app.controller("CamaraController",["$scope", '$http', '$window', function($scope, $http, $window){
 
 	//Editor
 	$scope.formEditar = 0;
@@ -23,10 +23,10 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 	//PUT
 	$scope.editarCamamara = function(camara){
 		//console.log(camara);
-		$http.put('/camaras/'+camara._id, camara).then(function(responde){
+		$http.put('/auth/camaras/'+camara._id, {token: $window.sessionStorage.getItem("token"),camara: $scope.camara}).then(function(response){
 			refresh();
 			Materialize.toast('Camara editada', 4000, "rounded");
-		});
+		}).catch(errorABM);
 		$scope.toggleEditor(camara._id);
 	}
 
@@ -44,18 +44,33 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 	//POST
 	$scope.agregarCamara = function(){
 		//console.log($scope.camara);
-		$http.post('/camaras', $scope.camara).then(function(response){
+		$http.post('/auth/camaras', {token: $window.sessionStorage.getItem("token"),camara: $scope.camara}).then(function(response){
 			refresh();
-		});
+		}).catch(errorABM);
 		$scope.camara = null;
 	};
 
 	//DELETE
 	$scope.eliminarCamara = function(id){
 		//console.log("eliminando "+id);
-		$http.delete('/camaras/'+id, $scope.camara).then(function(responde){
+		$http.delete('/auth/camaras/'+id, $scope.camara).then(function(responde){
 			refresh();
 			Materialize.toast('Camara eliminada', 4000, "rounded");
-		});
+		}).catch(errorABM);
 	}	
 }]);
+
+app.controller("LoginController", function($scope, $http, $window){
+	$scope.login = function(){
+		$http.post('/auth/login', {username: $scope.username, password: $scope.password}).then(function(response){
+			console.log(response);
+			if(response.data.success)//Si el login es exitoso, guardo el mensaje
+				$window.sessionStorage.setItem("token", response.data.token);
+			else Materialize.toast(response.data.message, 4000, "rounded"); //Sino error
+		});
+	}
+});
+
+errorABM = function(){
+			Materialize.toast("Acceso denegado", 4000, "rounded");
+		}

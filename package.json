@@ -19,6 +19,7 @@
     "body-parser": "*",
     "express": "*",
     "mongojs": "*",
-    "ngmap": "^1.18.4"
+    "ngmap": "^1.18.4",
+    "jsonwebtoken": "*"
   }
 }
