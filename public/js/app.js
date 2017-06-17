@@ -4,9 +4,10 @@ var app = angular.module('ctosApp',['ngRoute','ngMap']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
-		.when('/',{ templateUrl: '/views/abmCamara.html'})
+		.when('/',{ templateUrl: '/views/mapa.html'})
 		.when('/mapa',{ templateUrl: '/views/mapa.html'})
 		.when('/admin',{ templateUrl: '/views/admin.html'})
+		.when('/abm',{ templateUrl: '/views/abmCamara.html'})
 		.when('/prueba',{ templateUrl: '/views/prueba.html'});
 }]);
 
@@ -23,7 +24,7 @@ app.controller("CamaraController",["$scope", '$http', '$window', function($scope
 	//PUT
 	$scope.editarCamamara = function(camara){
 		//console.log(camara);
-		$http.put('/auth/camaras/'+camara._id, {token: $window.sessionStorage.getItem("token"),camara: $scope.camara}).then(function(response){
+		$http.post('/auth/camaras/editar/'+camara._id, {token: $window.sessionStorage.getItem("token"), camara: $scope.camara}).then(function(response){
 			refresh();
 			Materialize.toast('Camara editada', 4000, "rounded");
 		}).catch(errorABM);
@@ -44,7 +45,7 @@ app.controller("CamaraController",["$scope", '$http', '$window', function($scope
 	//POST
 	$scope.agregarCamara = function(){
 		//console.log($scope.camara);
-		$http.post('/auth/camaras', {token: $window.sessionStorage.getItem("token"),camara: $scope.camara}).then(function(response){
+		$http.post('/auth/camaras/agregar/', {token: $window.sessionStorage.getItem("token"),camara: $scope.camara}).then(function(response){
 			refresh();
 		}).catch(errorABM);
 		$scope.camara = null;
@@ -53,7 +54,7 @@ app.controller("CamaraController",["$scope", '$http', '$window', function($scope
 	//DELETE
 	$scope.eliminarCamara = function(id){
 		//console.log("eliminando "+id);
-		$http.delete('/auth/camaras/'+id, $scope.camara).then(function(responde){
+		$http.post('/auth/camaras/eliminar/'+id, {token: $window.sessionStorage.getItem("token")}).then(function(responde){
 			refresh();
 			Materialize.toast('Camara eliminada', 4000, "rounded");
 		}).catch(errorABM);
@@ -64,8 +65,10 @@ app.controller("LoginController", function($scope, $http, $window){
 	$scope.login = function(){
 		$http.post('/auth/login', {username: $scope.username, password: $scope.password}).then(function(response){
 			console.log(response);
-			if(response.data.success)//Si el login es exitoso, guardo el mensaje
+			if(response.data.success){//Si el login es exitoso, guardo el mensaje
 				$window.sessionStorage.setItem("token", response.data.token);
+				$window.location.href = '#!abm';
+			}
 			else Materialize.toast(response.data.message, 4000, "rounded"); //Sino error
 		});
 	}

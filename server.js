@@ -5,7 +5,10 @@ var bodyParser = require('body-parser');
 //App
 var app = express();
 app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+    extended: true
+}));
 
 var puerto = 3000
 // app.listen(puerto);
@@ -120,7 +123,9 @@ apiRoutes.post('/login', function(req, res) {
 apiRoutes.use(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
-  var token = req.body.token || req.headers['x-access-token'];
+  var token = req.body.token;
+  console.log("verificando token "+token);
+  console.log(req.body);
 
   // decode token
   if (token) {
@@ -150,9 +155,12 @@ apiRoutes.use(function(req, res, next) {
 // ---------------------------------------------------------
 // authenticated routes
 // ---------------------------------------------------------
-apiRoutes.post('/camaras', agregarCamara);
-apiRoutes.put('/camaras/:id', editarCamara);
-apiRoutes.delete('/camaras/:id', eliminarCamara);
+// apiRoutes.post('/camaras', agregarCamara);
+// apiRoutes.put('/camaras/:id', editarCamara);
+// apiRoutes.delete('/camaras/:id', eliminarCamara);
+apiRoutes.post('/camaras/agregar', agregarCamara);
+apiRoutes.post('/camaras/editar/:id', editarCamara);
+apiRoutes.post('/camaras/eliminar/:id', eliminarCamara);
 
 //api que necesita autenticación
 app.use('/auth', apiRoutes);
