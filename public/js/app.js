@@ -12,11 +12,35 @@ app.config(['$routeProvider', function($routeProvider){
 
 app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 
+	//Editor
+	var formEditar = [];
+	cargarEditor = function(){		
+		camaras = $scope.camaras;
+		for (c in camaras)
+			formEditar[camaras[c]._id]=false;
+	}
+	$scope.formEditar = formEditar;
+
+	$scope.toggleEditor = function (id) {
+    	$scope.formEditar[id] = !$scope.formEditar[id];
+	};
+
+	$scope.editarCamamara = function(id){
+		console.log($scope.camaraRegistrada);
+		$http.post('/camaras/editar/'+id, $scope.camaraRegistrada).then(function(responde){
+			refresh();
+		});
+		Materialize.toast('Camara editada', 4000, "rounded");
+		$scope.toggleEditor(id);
+	}
+
+	//Refresh list
 	refresh = function(){
 		$http.get("/camaras").then(function(response){
 			//console.log(response.data);
 			$scope.camaras = response.data;
 			actualizarAutocompletar(response.data);
+			cargarEditor();
 		})
 	};
 
@@ -35,37 +59,4 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		});
 		Materialize.toast('Camara eliminada', 4000, "rounded");
 	}	
-
-	$scope.formEditar = true;
-	toggleEditor = function () {
-    	$scope.formEditar = !$scope.formEditar;
-    	Materialize.toast($scope.formEditar+"", 4000, "rounded");
-	};
-
-	$scope.toggleEditor = toggleEditor;
-
-	$scope.editarCamamara = function(id){
-		/*$http.post('/camaras/'+id, $scope.camara).then(function(responde){
-			refresh();
-		});*/
-		Materialize.toast('Camara editada', 4000, "rounded");
-		toggleEditor();
-	}
 }]);
-
-app.directive("directivaEditar", function() {
-  var linkFunction = function(scope, element, attributes) {
-  	//Element es un arreglo, el [0] es el elemento DOM?
-  	e = element;
-  	console.log(element);
-    var paragraph = element.children()[0];
-    $(paragraph).on("click", function() {
-      $(this).css({ "background-color": "red" });
-    });
-  };
-
-  return {
-    restrict: "E",
-    link: linkFunction
-  };
-});
