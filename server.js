@@ -39,7 +39,9 @@ app.get("/camaras", function(req,res){
 /*app.post("/camaras", */
 agregarCamara = function(req, res) {
   //console.log(req.body);
-  db.camaras.insert(req.body.camara, function(err, doc){
+  if(req.body.camara == null)
+    res.status(400).send({message: "No se pueden agregar objetos nulos"})
+  else db.camaras.insert(req.body.camara, function(err, doc){
     res.json(doc);
   });
 };

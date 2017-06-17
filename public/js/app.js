@@ -62,7 +62,7 @@ app.controller("CamaraController",["$scope", '$http', '$window', function($scope
 	}
 
 	toastError = function(e){
-		Materialize.toast("Error "+e.status+":"+e.statusText, 4000, "rounded");
+		Materialize.toast("Error "+e.status+"\n"+e.statusText, 4000, "rounded");
 	}
 }]);
 
