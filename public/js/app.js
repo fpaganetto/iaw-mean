@@ -25,8 +25,8 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		//console.log(camara);
 		$http.put('/camaras/'+camara._id, camara).then(function(responde){
 			refresh();
+			Materialize.toast('Camara editada', 4000, "rounded");
 		});
-		Materialize.toast('Camara editada', 4000, "rounded");
 		$scope.toggleEditor(camara._id);
 	}
 
@@ -54,7 +54,7 @@ app.controller("CamaraController",["$scope", '$http',function($scope, $http){
 		//console.log("eliminando "+id);
 		$http.delete('/camaras/'+id, $scope.camara).then(function(responde){
 			refresh();
+			Materialize.toast('Camara eliminada', 4000, "rounded");
 		});
-		Materialize.toast('Camara eliminada', 4000, "rounded");
 	}	
 }]);
