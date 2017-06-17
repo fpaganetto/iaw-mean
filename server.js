@@ -124,8 +124,7 @@ apiRoutes.use(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
   var token = req.body.token;
-  console.log("verificando token "+token);
-  console.log(req.body);
+  // console.log(req.body);
 
   // decode token
   if (token) {
@@ -155,11 +154,9 @@ apiRoutes.use(function(req, res, next) {
 // ---------------------------------------------------------
 // authenticated routes
 // ---------------------------------------------------------
-// apiRoutes.post('/camaras', agregarCamara);
-// apiRoutes.put('/camaras/:id', editarCamara);
+apiRoutes.post('/camaras', agregarCamara);
+apiRoutes.put('/camaras/:id', editarCamara);
 // apiRoutes.delete('/camaras/:id', eliminarCamara);
-apiRoutes.post('/camaras/agregar', agregarCamara);
-apiRoutes.post('/camaras/editar/:id', editarCamara);
 apiRoutes.post('/camaras/eliminar/:id', eliminarCamara);
 
 //api que necesita autenticación

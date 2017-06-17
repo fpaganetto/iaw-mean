@@ -23,11 +23,11 @@ app.controller("CamaraController",["$scope", '$http', '$window', function($scope
 
 	//PUT
 	$scope.editarCamamara = function(camara){
-		//console.log(camara);
-		$http.post('/auth/camaras/editar/'+camara._id, {token: $window.sessionStorage.getItem("token"), camara: $scope.camara}).then(function(response){
+		console.log(camara);
+		$http.put('/auth/camaras/'+camara._id, {token: $window.sessionStorage.getItem("token"), camara: camara}).then(function(response){
 			refresh();
 			Materialize.toast('Camara editada', 4000, "rounded");
-		}).catch(errorABM);
+		}).catch(toastError);
 		$scope.toggleEditor(camara._id);
 	}
 
@@ -45,20 +45,25 @@ app.controller("CamaraController",["$scope", '$http', '$window', function($scope
 	//POST
 	$scope.agregarCamara = function(){
 		//console.log($scope.camara);
-		$http.post('/auth/camaras/agregar/', {token: $window.sessionStorage.getItem("token"),camara: $scope.camara}).then(function(response){
+		$http.post('/auth/camaras/', {token: $window.sessionStorage.getItem("token"),camara: $scope.camara}).then(function(response){
 			refresh();
-		}).catch(errorABM);
+			Materialize.toast('Camara agregada', 4000, "rounded");
+		}).catch(toastError);
 		$scope.camara = null;
 	};
 
 	//DELETE
 	$scope.eliminarCamara = function(id){
 		//console.log("eliminando "+id);
-		$http.post('/auth/camaras/eliminar/'+id, {token: $window.sessionStorage.getItem("token")}).then(function(responde){
+		$http.post('/auth/camaras/eliminar/'+id, {token: $window.sessionStorage.getItem("token")}).then(function(response){
 			refresh();
 			Materialize.toast('Camara eliminada', 4000, "rounded");
-		}).catch(errorABM);
-	}	
+		}).catch(toastError);
+	}
+
+	toastError = function(e){
+		Materialize.toast("Error "+e.status+":"+e.statusText, 4000, "rounded");
+	}
 }]);
 
 app.controller("LoginController", function($scope, $http, $window){
@@ -73,7 +78,3 @@ app.controller("LoginController", function($scope, $http, $window){
 		});
 	}
 });
-
-errorABM = function(){
-			Materialize.toast("Acceso denegado", 4000, "rounded");
-		}
