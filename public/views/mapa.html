@@ -32,13 +32,22 @@
                 on-click="mostrarComentarios(event, c)"
                 >
               </marker>
+              <marker
+                ng-repeat="d in delitos" position="{{d.latitud}},{{d.longitud}}" title="{{d.fecha}} - {{d.evento}} - {{d.aprehension}}"
+                icon="{
+                  url:'img/img_delito.png',
+                  scaledSize:[24,24]
+                }"
+                >
+              </marker>
             </ng-map>
           </div>
       </div> <!-- Columna 2 END-->
     </div> <!-- END ROW -->
     <div class="row">
-      <div id="comentarios" class = "col s12">
+      <div id="comentarios" class="col s12">
         <h3>Comentarios - {{comentarios_title}}</h3>
         <disqus shortname="localhost-i6dqfajxmh" identifier="{{comentarios_id}}" title="{{comentarios_title}}" url="{{comentarios_url}}"></disqus>
+      </div>
     </div>
 </div>

@@ -102,9 +102,36 @@ app.controller('MapController', ["$scope", '$http', 'NgMap', '$location', '$root
           ];
 	$scope.estilo = styleArray;
 
+	//obtener los datos de las cámaras desde nuestra API
 	$http.get("/camaras").then(function(response){
 			$scope.camaras = response.data;
 	})
+
+	//obtener los datos de delitos desde la municipalidad
+	var limite = 100;
+	$http.get("http://api.datos.bahiablanca.gob.ar/api/v2/datastreams/SEGUR-MAPA-DEL-DELIT-11354/data.json/?auth_key=898a9afe2b8b1bc741654a15b5c77427c57cc7dd&limit="+limite).then(function(response){
+			//Los primeros 6 elementos del arreglo tienen los nombres de los campos correspondientes, luego cada fila tiene el formato
+			//[Fecha, evento, lat, lng, aprehension, casos] para identificar hechos delictuales
+			var datos = response.data.result.fArray; //arreglo con los 300 elementos
+			console.log(datos);
+			var delitos = {};
+			var i = 6;
+			var j = 0;
+			//valor máximo 300 porque pedimos 50 casos y el primero corresponde en realidad a los nombres de los campos
+			for (i = 0; i < (limite*6-11); i+=6) {
+				var array = { fecha: datos[6+i].fStr,
+											evento: datos[7+i].fStr,
+											latitud: datos[8+i].fStr,
+											longitud: datos[9+i].fStr,
+											aprehension: datos[10+i].fStr,
+											casos: datos[11+i].fStr}
+				delitos[j] = array;
+				j++;
+			}
+			console.log(delitos);
+			$scope.delitos = delitos;
+	})
+
 
 	$scope.mostrarComentarios = function(event, camara) {
 
@@ -132,10 +159,4 @@ app.controller('MapController', ["$scope", '$http', 'NgMap', '$location', '$root
 		});
 	}
 
-}]);
-
-
-app.controller('MarkerController', ["$scope", '$http', 'NgMap', '$routeParams' ,function($scope, $http, NgMap, $routeParams) {
-	$scope.param = $routeParams.param; //obtenemos la parte /nombre del URL mapa/nombre
-	$scope.marcador_nombre = $scope.param[0];
 }]);
