@@ -4,6 +4,7 @@ app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
 		.when('/',{ templateUrl: '/views/mapa.html'})
 		.when('/mapa',{ templateUrl: '/views/mapa.html'})
+		.when('/mapa/:nombre',{ templateUrl: '/views/marcador.html'})
 		.when('/admin',{ templateUrl: '/views/admin.html'})
 		.when('/abm',{ templateUrl: '/views/abmCamara.html'})
 		.when('/prueba',{ templateUrl: '/views/prueba.html'});

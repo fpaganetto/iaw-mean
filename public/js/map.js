@@ -1,8 +1,10 @@
-app.controller('MapController', ["$scope", '$http', 'NgMap',function($scope, $http, NgMap){
+app.controller('MapController', ["$scope", '$http', 'NgMap', '$location', '$rootScope',function($scope, $http, NgMap, $location, $rootScope){
 
-	$scope.comentarios_id = 'main';
-	$scope.comentarios_url = 'http://localhost:3000/#!/';
-	$scope.comentarios_title = 'Comentarios Generales';
+	$rootScope.marcador = "";
+
+	$rootScope.comentarios_id = 'main';
+	$rootScope.comentarios_url = 'http://localhost:3000/#!/';
+	$rootScope.comentarios_title = 'Comentarios Generales';
 
 	console.log($scope.comentarios_title);
 	console.log($scope.comentarios_id);
@@ -99,29 +101,37 @@ app.controller('MapController', ["$scope", '$http', 'NgMap',function($scope, $ht
 			$scope.camaras = response.data;
 	})
 
-	$scope.mostrarComentarios = function(event, id) {
+	$scope.mostrarComentarios = function(event, camara) {
 
-		console.log(this);
+		$rootScope.marcador = camara;
+		console.log("marcador: ")
+		console.log($rootScope.marcador);
 
-		var title = this.title;
-		console.log("title: ")
-		console.log(title);
-		title = title.split('~');
-		var nombre = title[0];
-		var id = title[1];
+		$rootScope.comentarios_id = camara._id;
+		$rootScope.comentarios_url = 'http://localhost:3000/#!/mapa/'+camara.nombre;
+		//$rootScope.comentarios_url = 'http://localhost:3000/#!/';
+		$rootScope.comentarios_title = camara.nombre;
 
-		console.log(id, nombre);
-		$scope.comentarios_id = id;
-		$scope.comentarios_url = 'http://localhost:3000/#!/';
-		$scope.comentarios_title = nombre;
+		console.log($rootScope.comentarios_id, $rootScope.comentarios_title, $rootScope.comentarios_url);
 
+		//$location.path('/mapa/'+camara.nombre);
+
+		//Necesario para cambiar el thread en aplicaciones AJAX o Single Page
 		DISQUS.reset({
 		  reload: true,
 		  config: function () {
-		    this.page.identifier = $scope.comentarios_id;
-		    this.page.url = $scope.comentarios_url;
+		    this.page.identifier = camara._id;
+		    //this.page.url = 'http://localhost:3000/#!/';
+		    this.page.url = 'http://localhost:3000/#!/mapa/'+camara.nombre;
+				this.page.title =  camara.nombre;
 		  }
 		});
 	}
 
+}]);
+
+
+app.controller('MarkerController', ["$scope", '$http', 'NgMap', '$routeParams' ,function($scope, $http, NgMap, $routeParams) {
+	$scope.param = $routeParams.param; //obtenemos la parte /nombre del URL mapa/nombre
+	$scope.marcador_nombre = $scope.param[0];
 }]);
