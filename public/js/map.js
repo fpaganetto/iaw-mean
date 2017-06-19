@@ -112,20 +112,19 @@ app.controller('MapController', ["$scope", '$http', 'NgMap', '$location', '$root
 	$http.get("http://api.datos.bahiablanca.gob.ar/api/v2/datastreams/SEGUR-MAPA-DEL-DELIT-11354/data.json/?auth_key=898a9afe2b8b1bc741654a15b5c77427c57cc7dd&limit="+limite).then(function(response){
 			//Los primeros 6 elementos del arreglo tienen los nombres de los campos correspondientes, luego cada fila tiene el formato
 			//[Fecha, evento, lat, lng, aprehension, casos] para identificar hechos delictuales
-			var datos = response.data.result.fArray; //arreglo con los 300 elementos
+			var datos = response.data.result.fArray; //arreglo con los limite*6 elementos
 			console.log(datos);
 			var delitos = {};
 			var i = 6;
 			var j = 0;
 			//valor máximo 300 porque pedimos 50 casos y el primero corresponde en realidad a los nombres de los campos
-			for (i = 0; i < (limite*6-11); i+=6) {
-				var array = { fecha: datos[6+i].fStr,
-											evento: datos[7+i].fStr,
-											latitud: datos[8+i].fStr,
-											longitud: datos[9+i].fStr,
-											aprehension: datos[10+i].fStr,
-											casos: datos[11+i].fStr}
-				delitos[j] = array;
+			for (i = 6; i < limite*6; i+=6) {
+				delitos[j] = { fecha: datos[i].fStr,
+											evento: datos[i+1].fStr,
+											latitud: datos[i+2].fStr,
+											longitud: datos[i+3].fStr,
+											aprehension: datos[i+4].fStr,
+											casos: datos[i+5].fStr};
 				j++;
 			}
 			console.log(delitos);
