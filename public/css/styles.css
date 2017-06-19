@@ -49,3 +49,27 @@ table.highlight tbody tr:hover {
     background-color: #37474F;
 }
 
+
+html, body, #map {
+  margin: 0;
+  padding: 0;
+  height: 700px;
+  width: 100%;
+}
+#map {
+  position: relative;
+}
+ng-map {
+  width:100%;
+  height:100%;
+}
+
+#comentarios {
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 2%;
+}
+
+#comentarios > h3 {
+  text-align: center;
+}
