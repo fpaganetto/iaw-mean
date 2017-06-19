@@ -1,6 +1,4 @@
-angular.module('mapa',["ngMap"]); //definición de módulo, código en map.js
-
-var app = angular.module('ctosApp',['ngRoute','ngMap']);
+var app = angular.module('ctosApp',['ngRoute','ngMap', 'ngDisqus']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider

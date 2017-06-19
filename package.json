@@ -18,8 +18,8 @@
   "dependencies": {
     "body-parser": "*",
     "express": "*",
+    "jsonwebtoken": "*",
     "mongojs": "*",
-    "ngmap": "^1.18.4",
-    "jsonwebtoken": "*"
+    "ngmap": "^1.18.4"
   }
 }

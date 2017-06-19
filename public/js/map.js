@@ -1,5 +1,18 @@
-app.controller('MapController', ["$scope", '$http',function($scope, $http, NgMap){
-	//acá deberíamos definir una colección cuyos elementos son las cámaras obtenidas desde la base de datos
+app.controller('MapController', ["$scope", '$http', 'NgMap',function($scope, $http, NgMap){
+
+	$scope.comentarios_id = 'main';
+	$scope.comentarios_url = 'http://localhost:3000/#!/';
+	$scope.comentarios_title = 'Comentarios Generales';
+
+	console.log($scope.comentarios_title);
+	console.log($scope.comentarios_id);
+	console.log($scope.comentarios_url);
+
+
+	NgMap.getMap().then(function(map) {
+	    app.map = map;	//variable para acceder al mapa
+	});
+
 	var styleArray = [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -86,7 +99,29 @@ app.controller('MapController', ["$scope", '$http',function($scope, $http, NgMap
 			$scope.camaras = response.data;
 	})
 
-	/*NgMap.getMap().then(function(map) {
-    	google.maps.event.trigger(map, 'resize');
-    });*/
+	$scope.mostrarComentarios = function(event, id) {
+
+		console.log(this);
+
+		var title = this.title;
+		console.log("title: ")
+		console.log(title);
+		title = title.split('~');
+		var nombre = title[0];
+		var id = title[1];
+
+		console.log(id, nombre);
+		$scope.comentarios_id = id;
+		$scope.comentarios_url = 'http://localhost:3000/#!/';
+		$scope.comentarios_title = nombre;
+
+		DISQUS.reset({
+		  reload: true,
+		  config: function () {
+		    this.page.identifier = $scope.comentarios_id;
+		    this.page.url = $scope.comentarios_url;
+		  }
+		});
+	}
+
 }]);
