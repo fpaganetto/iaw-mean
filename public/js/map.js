@@ -1,6 +1,11 @@
 app.controller('MapController', ["$scope", '$http', 'NgMap', '$location', '$rootScope',function($scope, $http, NgMap, $location, $rootScope){
 
-	$rootScope.marcador = "";
+	$rootScope.marcador = {};
+
+	//datos iniciales
+	$rootScope.marcador.latitud = "-38.7183177";
+	$rootScope.marcador.longitud = "-62.2663478";
+	$rootScope.marcador.zoom = "14";
 
 	$rootScope.comentarios_id = 'main';
 	$rootScope.comentarios_url = 'http://localhost:3000/#!/';
@@ -103,7 +108,10 @@ app.controller('MapController', ["$scope", '$http', 'NgMap', '$location', '$root
 
 	$scope.mostrarComentarios = function(event, camara) {
 
+		//Uso de rootScope para que puede ser accedido desde un div que no está en el scope de este controller
 		$rootScope.marcador = camara;
+		//$rootScope.marcador.zoom = "14"; //estas dos líneas hacen que vuelva a hacer zoom si se salió de él
+		app.map.setZoom(18);
 		console.log("marcador: ")
 		console.log($rootScope.marcador);
 
