@@ -117,19 +117,15 @@ app.controller('MapController', ["$scope", '$http', 'NgMap', '$location', '$root
 
 		$rootScope.comentarios_id = camara._id;
 		$rootScope.comentarios_url = 'http://localhost:3000/#!/mapa/'+camara.nombre;
-		//$rootScope.comentarios_url = 'http://localhost:3000/#!/';
 		$rootScope.comentarios_title = camara.nombre;
 
 		console.log($rootScope.comentarios_id, $rootScope.comentarios_title, $rootScope.comentarios_url);
-
-		//$location.path('/mapa/'+camara.nombre);
 
 		//Necesario para cambiar el thread en aplicaciones AJAX o Single Page
 		DISQUS.reset({
 		  reload: true,
 		  config: function () {
 		    this.page.identifier = camara._id;
-		    //this.page.url = 'http://localhost:3000/#!/';
 		    this.page.url = 'http://localhost:3000/#!/mapa/'+camara.nombre;
 				this.page.title =  camara.nombre;
 		  }
