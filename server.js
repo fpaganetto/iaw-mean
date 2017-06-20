@@ -35,6 +35,18 @@ app.get("/camaras", function(req,res){
   });
 });
 
+app.get("/camaras/min", function(req,res){
+  //console.log("Solicitud de camaras");
+
+  db.camaras.find(function(err, docs){
+    docs.forEach(function(c){
+      delete c._id;
+      delete c.descripcion;
+    });
+    res.json(docs);
+  });
+});
+
 //POST
 /*app.post("/camaras", */
 agregarCamara = function(req, res) {
