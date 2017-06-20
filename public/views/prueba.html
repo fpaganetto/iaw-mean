@@ -1,20 +1,41 @@
- <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn" href="#modal1">Modal</a>
+  <!-- Slide menu -->
+  <ul id="slide-out" class="side-nav slide-listacam">
+    <div ng-include src="'views/listaCamaras.html'"></div>
+  </ul>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
+  <div class="fixed-action-btn">
+      <a href="#" data-activates="slide-out" class="btn-floating btn-large button-collapse waves-effect waves-light red">
+      <i class="material-icons">menu</i>
+      </a>
   </div>
 
   <script>
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-  });
+  // Initialize collapse button
+  $(".button-collapse").sideNav();
+  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+  //$('.collapsible').collapsible();
   </script>
+  <!-- Slide menu END-->
+
+
+<!-- Modal Trigger -->
+<div class="col">
+    <a class='btn' data-target='demoModal' modal>Show Modal</a>
+</div>
+<!-- Modal Structure -->
+<div id="demoModal" class="modal">
+    <div class="modal-content">
+        <h4>Modal header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal').modal();
+});
+</script>

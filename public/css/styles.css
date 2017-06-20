@@ -73,3 +73,15 @@ ng-map {
 #comentarios > h3 {
   text-align: center;
 }
+
+.slide-listacam{
+  background-color: #455A64;
+  width: 600px;
+  padding-right: 25px;
+  padding-left: 25px !important;
+}
+
+.no-padding{
+  padding-right: 0px;
+  padding-left: 0px;
+}
