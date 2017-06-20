@@ -14,15 +14,15 @@
 <table class="highlight">
 	<thead>
 	  <tr>
-		<th>Nombre</th>
-		<th>Descripcion</th>
-		<th>Latitud</th>
-		<th>Longitud</th>
+	      <th class ="ordenable" ng-click="orden = &quot nombre &quot">Nombre</th >
+	      <th class ="ordenable" ng-click="orden = &quot descripcion &quot">Descripcion</th>
+	      <th class ="ordenable" ng-click="orden = &quot latitud &quot">Latitud</th>
+	      <th class ="ordenable" ng-click="orden = &quot longitud &quot">Longitud</th>
 	  </tr>
 	</thead>
 
 	<tbody>
-	<tr ng-repeat="camara in camaras | filter:filtro">
+	<tr ng-repeat="camara in camaras | filter:filtro | orderBy:orden">
 		<td> {{camara.nombre}} </td>
 		<td> {{camara.descripcion}}</td>
 		<td> {{camara.latitud}} </td>

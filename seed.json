@@ -4,11 +4,41 @@
 		"descripcion" : "Universidad Nacional del Sur",
 		"latitud" : -38.701588,
 		"longitud" : -62.266557
-	}
+	},
 	{
 		"nombre" : "Plaza Rivadavia",
 		"descripcion" : "Plaza del centro de la ciudad",
 		"latitud" : -38.717234,
 		"longitud" : -62.265683
+	},
+	{
+		"nombre" : "Sarmiento y Rojas",
+		"descripcion" : "Salida barrio La Falda",
+		"latitud" : -38.704501,
+		"longitud" : -62.25121
+	},
+	{
+		"nombre" : "San Andres",
+		"descripcion" : "Para de colectivo 503",
+		"latitud" : -38.695525,
+		"longitud" : -62.2541
+	},
+	{
+		"nombre" : "BBPS",
+		"descripcion" : "Bahía Blanca Plaza Shopping",
+		"latitud" : -38.698875,
+		"longitud" : -62.243564
+	},
+	{
+		"nombre" : "Sarmiento y La Falda",
+		"descripcion" : "Escuela Media 12",
+		"latitud" : -38.705506,
+		"longitud" : -62.252383
+	},
+	{
+		"nombre" : "Paseo Arroyo Napostá",
+		"descripcion" : "Zona de boliches",
+		"latitud" : -38.704133,
+		"longitud" :  -62.261867
 	}
 ]

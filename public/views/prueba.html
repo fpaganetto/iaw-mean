@@ -39,3 +39,48 @@ $(document).ready(function(){
   $('.modal').modal();
 });
 </script>
+
+
+
+
+
+
+
+
+
+<div class="container">
+  <div ng-controller="CamaraController">
+  <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">search</i>
+          <input type="text" id="autocomplete-input" class="autocomplete" data-ng-model="filtro">
+          <label for="autocomplete-input">Filtrar</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="highlight">
+    <thead>
+      <tr>
+      <th class ="ordenable" ng-click="orden = &quot nombre &quot">Nombre</th >
+      <th class ="ordenable" ng-click="orden = &quot descripcion &quot">Descripcion</th>
+      <th class ="ordenable" ng-click="orden = &quot latitud &quot">Latitud</th>
+      <th class ="ordenable" ng-click="orden = &quot longitud &quot">Longitud</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="camara in camaras | filter:filtro | orderBy:orden">
+      <td> {{camara.nombre}} </td>
+      <td> {{camara.descripcion}}</td>
+      <td> {{camara.latitud}} </td>
+      <td> {{camara.longitud}} </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <script src="js/autoCompletar.js"></script>
+</div> <!-- fin container -->
