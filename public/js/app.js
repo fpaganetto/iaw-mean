@@ -6,7 +6,7 @@ app.config(['$routeProvider', function($routeProvider){
 		.when('/mapa',{ templateUrl: '/views/mapa.html'})
 		.when('/admin',{ templateUrl: '/views/admin.html'})
 		.when('/abm',{ templateUrl: '/views/abmCamara.html'})
-		.when('/prueba',{ templateUrl: '/views/prueba.html'});
+		.when('/readme',{ templateUrl: '/views/readme.html'});
 }]);
 
 app.controller("CamaraController",["$scope", '$http', '$window', function($scope, $http, $window){

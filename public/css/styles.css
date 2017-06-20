@@ -95,3 +95,8 @@ ng-map {
 	text-align: center;
 	font-weight: bold;
 }
+
+dt {
+  font-size: 130%;
+  font-weight: bold;
+}
