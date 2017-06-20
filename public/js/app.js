@@ -64,7 +64,13 @@ app.controller("CamaraController",["$scope", '$http', '$window', function($scope
 	}
 }]);
 
-app.controller("LoginController", function($scope, $http, $window){
+app.controller("LoginController", function($scope, $http, $window, $rootScope){
+
+	//función que permite desde cualquier lado saber si el admin está logueado
+	$rootScope.logueado = function () {
+		return $window.sessionStorage.getItem("token") != null;
+	}
+
 	$scope.login = function(){
 		$http.post('/auth/login', {username: $scope.username, password: $scope.password}).then(function(response){
 			console.log(response);

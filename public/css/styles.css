@@ -90,3 +90,8 @@ ng-map {
   cursor: pointer;
   cursor: hand;
 }
+
+.container > h1 {
+	text-align: center;
+	font-weight: bold;
+}
